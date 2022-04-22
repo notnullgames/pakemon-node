@@ -2,6 +2,9 @@
 Description=Pakémon
 
 [Service]
-ExecStart=cd /opt/pakemon/ && npm start
+ExecStart=cd /opt/pakemon/ && node index.js
 Restart=always
 RestartSec=5s
+
+[Install]
+WantedBy=basic.target

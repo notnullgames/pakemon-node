@@ -59,6 +59,7 @@ global.switchScene = (scene, params = {}) => {
 global.switchScene(SceneGamesTop)
 
 function exit () {
+  globalThis.shouldClose = true
   clearInterval(interval)
   if (currentScene?.destroy) {
     currentScene.destroy()
@@ -69,15 +70,16 @@ function exit () {
 // I do a weird interval to make the game-loop work better with async
 const interval = setInterval(() => {
   if (r.WindowShouldClose() || globalThis.shouldClose) {
-    exit()
+    return exit()
   } else {
+    // on keyboard exit on START + SELECT
     if (r.IsKeyPressed(mappedInput.START.key) && r.IsKeyPressed(mappedInput.SELECT.key)) {
-      exit()
+      return exit()
     }
     if (r.IsGamepadAvailable(0)) {
       // on joystick exit on START + SELECT
       if (r.IsGamepadButtonDown(0, mappedInput.START.gamepad) && r.IsGamepadButtonDown(0, mappedInput.SELECT.gamepad)) {
-        exit()
+        return exit()
       }
       for (const b of Object.keys(mappedInput)) {
         if (currentScene.buttonPress && r.IsGamepadButtonPressed(0, mappedInput[b].gamepad)) {
