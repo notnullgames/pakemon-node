@@ -6,24 +6,6 @@ r.SetTraceLogLevel(r.LOG_ERROR)
 r.InitWindow(320, 240, 'Pakémon')
 r.SetTargetFPS(60)
 
-r.SetGamepadMappings(`
-030000005e0400008502000000010000,Microsoft Xbox,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,leftshoulder:b5,leftstick:b8,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b2,rightstick:b9,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b3,y:b4,platform:Linux,
-030000005e0400008e02000001000000,Microsoft Xbox 360,a:b0,b:b1,back:b6,dpdown:h0.1,dpleft:h0.2,dpright:h0.8,dpup:h0.4,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux,
-030000005e0400008e02000004010000,Microsoft Xbox 360,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux,
-030000005e0400008e02000056210000,Microsoft Xbox 360,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux,
-030000005e0400008e02000062230000,Microsoft Xbox 360,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux,
-030000005e040000d102000001010000,Microsoft Xbox One,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux,
-030000005e040000d102000003020000,Microsoft Xbox One,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux,
-060000005e040000120b000009050000,Microsoft Xbox One,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux,
-030000005e040000120b00000b050000,Microsoft Xbox One,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux,
-030000005e040000dd02000003020000,Microsoft Xbox One 2015,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux,
-030000005e040000e302000003020000,Microsoft Xbox One Elite,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux,
-030000005e040000000b000008040000,Microsoft Xbox One Elite 2,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux,
-050000005e040000050b000003090000,Microsoft Xbox One Elite 2,a:b0,b:b1,back:b17,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b6,leftstick:b13,lefttrigger:a6,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b14,righttrigger:a5,rightx:a2,righty:a3,start:b11,x:b3,y:b4,platform:Linux,
-030000005e040000ea02000008040000,Microsoft Xbox One S,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux,
-030000005e0400008902000021010000,Microsoft Xbox pad v2,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,leftshoulder:b5,leftstick:b8,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b2,rightstick:b9,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b3,y:b4,platform:Linux,
-`)
-
 // https://docs.libretro.com/guides/input-and-controls/
 const mappedInput = {
   A: { gamepad: 0, key: r.KEY_X },
@@ -34,10 +16,10 @@ const mappedInput = {
   R: { gamepad: 5, key: r.KEY_W },
   SELECT: { gamepad: 6, key: r.KEY_LEFT_SHIFT },
   START: { gamepad: 7, key: r.KEY_ENTER },
-  UP: { gamepad: 99, key: r.KEY_UP },
-  DOWN: { gamepad: 99, key: r.KEY_DOWN },
-  LEFT: { gamepad: 99, key: r.KEY_LEFT },
-  RIGHT: { gamepad: 99, key: r.KEY_RIGHT }
+  UP: { key: r.KEY_UP },
+  DOWN: { key: r.KEY_DOWN },
+  LEFT: { key: r.KEY_LEFT },
+  RIGHT: { key: r.KEY_RIGHT }
 }
 
 /*
@@ -85,7 +67,9 @@ function exit () {
   r.CloseWindow()
 }
 
-// I do a weird interval to make the game-loop work better with async
+const axis = [0, 0]
+
+// I do a weird interval to make the game-loop work better with async stuff
 const interval = setInterval(() => {
   if (r.WindowShouldClose() || globalThis.shouldClose) {
     return exit()
@@ -100,21 +84,79 @@ const interval = setInterval(() => {
         return exit()
       }
       for (const b of Object.keys(mappedInput)) {
-        if (currentScene.buttonPress && r.IsGamepadButtonPressed(0, mappedInput[b].gamepad)) {
-          currentScene.buttonPress(b)
+        if (typeof mappedInput[b].gamepad !== 'undefined') {
+          if (currentScene.buttonPress && r.IsGamepadButtonPressed(0, mappedInput[b].gamepad)) {
+            currentScene.buttonPress(b)
+          }
+          if (currentScene.buttonRelease && r.IsGamepadButtonReleased(0, mappedInput[b].gamepad)) {
+            currentScene.buttonRelease(b)
+          }
         }
-        if (currentScene.buttonRelease && r.IsGamepadButtonReleased(0, mappedInput[b].gamepad)) {
-          currentScene.buttonRelease(b)
+      }
+
+      const ca = [
+        r.GetGamepadAxisMovement(0, 0),
+        r.GetGamepadAxisMovement(0, 1)
+      ]
+
+      if (currentScene.buttonPress) {
+        if (ca[0] < 0) {
+          if (axis[0] === 0) {
+            axis[0] = -1
+            currentScene.buttonPress('UP')
+          }
+        }
+        if (ca[0] > 0) {
+          if (axis[0] === 0) {
+            axis[0] = 1
+            currentScene.buttonPress('DOWN')
+          }
+        }
+        if (ca[1] < 0) {
+          if (axis[1] === 0) {
+            axis[1] = -1
+            currentScene.buttonPress('LEFT')
+          }
+        }
+        if (ca[1] > 0) {
+          if (axis[1] === 0) {
+            axis[1] = 1
+            currentScene.buttonPress('RIGHT')
+          }
+        }
+      }
+      if (currentScene.buttonRelease) {
+        if (ca[0] === 0) {
+          if (axis[0] === -1) {
+            axis[0] = 0
+            currentScene.buttonRelease('UP')
+          }
+          if (axis[0] === 1) {
+            axis[0] = 0
+            currentScene.buttonRelease('DOWN')
+          }
+        }
+        if (ca[1] === 0) {
+          if (axis[0] === -1) {
+            axis[1] = 0
+            currentScene.buttonRelease('LEFT')
+          }
+          if (axis[1] === 1) {
+            axis[1] = 0
+            currentScene.buttonRelease('RIGHT')
+          }
         }
       }
     }
 
     for (const b of Object.keys(mappedInput)) {
-      if (currentScene.buttonPress && r.IsKeyPressed(mappedInput[b].key)) {
-        currentScene.buttonPress(b)
-      }
-      if (currentScene.buttonRelease && r.IsKeyReleased(mappedInput[b].key)) {
-        currentScene.buttonRelease(b)
+      if (typeof mappedInput[b].gamepad !== 'undefined') {
+        if (currentScene.buttonPress && r.IsKeyPressed(mappedInput[b].key)) {
+          currentScene.buttonPress(b)
+        }
+        if (currentScene.buttonRelease && r.IsKeyReleased(mappedInput[b].key)) {
+          currentScene.buttonRelease(b)
+        }
       }
     }
 
