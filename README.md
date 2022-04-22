@@ -34,7 +34,7 @@ and put your roms in `roms/`. You can name the system-folder whatever you want, 
 
 ## respawn
 
-Pakemon exits when it runs things, so you should set it to respawn, like via systemd. I made an example script in `scripts/pakemon.service`. You can install it like this:
+Pakemon exits when it runs things, so you should set it to respawn, like via systemd, or the way I do it in `npm start` (with nodemon.) I made an example script in `scripts/pakemon.service`. You can install it like this:
 
 ```sh
 sudo cp scripts/pakemon.service /lib/systemd/system/
