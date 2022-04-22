@@ -108,6 +108,9 @@ const interval = setInterval(() => {
     if (currentScene.draw) {
       currentScene.draw()
     }
+
+    r.DrawText(r.GetGamepadButtonPressed().toString(), 310, 10, 8, r.WHITE)
+
     r.EndDrawing()
   }
 }, 10)
