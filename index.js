@@ -16,10 +16,10 @@ const mappedInput = {
   R: { gamepad: 5, key: r.KEY_W },
   SELECT: { gamepad: 6, key: r.KEY_LEFT_SHIFT },
   START: { gamepad: 7, key: r.KEY_ENTER },
-  UP: { key: r.KEY_UP },
-  DOWN: { key: r.KEY_DOWN },
-  LEFT: { key: r.KEY_LEFT },
-  RIGHT: { key: r.KEY_RIGHT }
+  UP: { gamepad: 99, key: r.KEY_UP },
+  DOWN: { gamepad: 99, key: r.KEY_DOWN },
+  LEFT: { gamepad: 99, key: r.KEY_LEFT },
+  RIGHT: { gamepad: 99, key: r.KEY_RIGHT }
 }
 
 /*
@@ -35,9 +35,9 @@ use these, at some point, make sure buttons are setup right:
 5 - GAMEPAD_BUTTON_RIGHT_FACE_UP
 
 1 - GAMEPAD_BUTTON_LEFT_FACE_UP
+2 - GAMEPAD_BUTTON_LEFT_FACE_RIGHT
 3 - GAMEPAD_BUTTON_LEFT_FACE_DOWN
 4 - GAMEPAD_BUTTON_LEFT_FACE_LEFT
-2 - GAMEPAD_BUTTON_LEFT_FACE_RIGHT
 
 9 - GAMEPAD_BUTTON_LEFT_TRIGGER_1
 11 - GAMEPAD_BUTTON_RIGHT_TRIGGER_1
