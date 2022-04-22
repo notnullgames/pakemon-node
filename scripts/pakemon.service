@@ -1,0 +1,7 @@
+[Unit]
+Description=Pakémon
+
+[Service]
+ExecStart=cd /opt/pakemon/ && npm start
+Restart=always
+RestartSec=5s

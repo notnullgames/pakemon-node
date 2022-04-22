@@ -1,0 +1,119 @@
+{
+  "node-raylib": [
+    "js"
+  ],
+  "shell": [
+    "sh",
+    "py",
+    "bat"
+  ],
+  "null0": [
+    "wasm"
+  ],
+
+  "atari800": [
+    "a52"
+  ],
+  "bluemsx": [
+    "mx1",
+    "mx2"
+  ],
+  "fbneo": [
+    "zip"
+  ],
+  "fceumm": [
+    "nes"
+  ],
+  "gambatte": [
+    "gb",
+    "gbc"
+  ],
+  "genesis_plus_gx": [
+    "sms",
+    "gg",
+    "md",
+    "cue"
+  ],
+  "handy": [
+    "lnx"
+  ],
+  "lutro": [
+    "lutro",
+    "lua"
+  ],
+  "mednafen_ngp": [
+    "ngp",
+    "ngc"
+  ],
+  "mednafen_pce_fast": [
+    "pce",
+    "cue"
+  ],
+  "mednafen_pcfx": [
+    "cue"
+  ],
+  "mednafen_psx": [
+    "cue",
+    "m3u"
+  ],
+  "mednafen_saturn": [
+    "cue"
+  ],
+  "mednafen_supergrafx": [
+    "sgx",
+    "pce"
+  ],
+  "mednafen_vb": [
+    "vb"
+  ],
+  "mednafen_wswan": [
+    "ws",
+    "wsc"
+  ],
+  "melonds": [
+    "nds"
+  ],
+  "mgba": [
+    "gba"
+  ],
+  "mupen64plus_next": [
+    "n64"
+  ],
+  "np2kai": [
+    "fdi"
+  ],
+  "o2em": [
+    "bin"
+  ],
+  "pcsx_rearmed": [
+    "cue"
+  ],
+  "picodrive": [
+    "sms",
+    "md",
+    "cue"
+  ],
+  "pokemini": [
+    "min"
+  ],
+  "prosystem": [
+    "a78"
+  ],
+  "snes9x": [
+    "sfc",
+    "smc"
+  ],
+  "stella2014": [
+    "a26"
+  ],
+  "swanstation": [
+    "cue",
+    "m3u"
+  ],
+  "vecx": [
+    "vec"
+  ],
+  "virtualjaguar": [
+    "jag"
+  ]
+}
