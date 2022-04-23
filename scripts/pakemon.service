@@ -2,7 +2,8 @@
 Description=Pakémon
 
 [Service]
-ExecStart=cd /opt/pakemon/ && node index.js
+WorkingDirectory=/opt/pakemon
+ExecStart=node index.js
 Restart=always
 RestartSec=5s
 
