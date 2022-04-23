@@ -20,6 +20,7 @@ export async function MaintainFPS (targetFPS) {
 
 
 // https://docs.libretro.com/guides/input-and-controls/
+// this is mapped for Gpi controller
 const mappedInput = {
   A: { button: 0, key: r.KEY_X },
   B: { button: 1, key: r.KEY_Z },
@@ -29,10 +30,10 @@ const mappedInput = {
   R: { button: 5, key: r.KEY_W },
   SELECT: { button: 6, key: r.KEY_LEFT_SHIFT },
   START: { button: 7, key: r.KEY_ENTER },
-  UP: { axis: 0, direction: -1, key: r.KEY_UP },
-  DOWN: { axis: 0, direction: 1, key: r.KEY_DOWN },
-  LEFT: { axis: 1, direction: -1, key: r.KEY_LEFT },
-  RIGHT: { axis: 1, direction: 1, key: r.KEY_RIGHT }
+  UP: { axis: 7, direction: -1, key: r.KEY_UP },
+  DOWN: { axis: 7, direction: 1, key: r.KEY_DOWN },
+  LEFT: { axis: 6, direction: -1, key: r.KEY_LEFT },
+  RIGHT: { axis: 6, direction: 1, key: r.KEY_RIGHT }
 }
 
 let currentScene
@@ -50,9 +51,12 @@ global.switchScene = (scene, params = {}) => {
 
 global.switchScene(SceneGamesTop)
 
-const pushOnce = {}
+const axisOnce = {}
 
-while(await MaintainFPS(60)) {
+// IsGamepadButtonPressed/IsGamepadButtonReleased wasn't working for me, so this uses 1-time press tracking
+const buttonOnce = {}
+
+while(await MaintainFPS(30)) {
   // allow global exit with START + SELECT
   if (
     (r.IsKeyDown(mappedInput.START.key) && r.IsKeyDown(mappedInput.SELECT.key)) ||
@@ -64,38 +68,40 @@ while(await MaintainFPS(60)) {
   // map input to callbacks
   for (const button of Object.keys(mappedInput)) {
     if (currentScene.buttonPress) {
-      if (typeof mappedInput[button].button !== 'undefined' && r.IsGamepadButtonPressed(0, mappedInput[button].button)) {
-        currentScene.buttonPress(button)
-      }
       if (typeof mappedInput[button].key !== 'undefined' && r.IsKeyPressed(mappedInput[button].key)) {
         currentScene.buttonPress(button)
       }
+      if (typeof mappedInput[button].button !== 'undefined' && !buttonOnce[mappedInput[button].button] && r.IsGamepadButtonDown(0, mappedInput[button].button)) {
+        buttonOnce[mappedInput[button].button] = true
+        currentScene.buttonPress(button)
+      }
       if (typeof mappedInput[button].axis !== 'undefined') {
-        if (mappedInput[button].direction === -1 && r.GetGamepadAxisMovement(0, mappedInput[button].axis) < 0 && !pushOnce[mappedInput[button].axis]) {
-          pushOnce[mappedInput[button].axis] = true
+        if (mappedInput[button].direction === -1 && !axisOnce[mappedInput[button].axis] && r.GetGamepadAxisMovement(0, mappedInput[button].axis) < 0) {
+          axisOnce[mappedInput[button].axis] = true
           currentScene.buttonPress(button)
         }
-        if (mappedInput[button].direction === 1 && r.GetGamepadAxisMovement(0, mappedInput[button].axis) > 0 && !pushOnce[mappedInput[button].axis]) {
-          pushOnce[mappedInput[button].axis] = true
+        if (mappedInput[button].direction === 1 && !axisOnce[mappedInput[button].axis] && r.GetGamepadAxisMovement(0, mappedInput[button].axis) > 0) {
+          axisOnce[mappedInput[button].axis] = true
           currentScene.buttonPress(button)
         }
       }
     }
     
     if (currentScene.buttonRelease) {
-      if (typeof mappedInput[button].button !== 'undefined' && r.IsGamepadButtonReleased(0, mappedInput[button].button)) {
-        currentScene.buttonRelease(button)
-      }
       if (typeof mappedInput[button].key !== 'undefined' && r.IsKeyReleased(mappedInput[button].key)) {
         currentScene.buttonRelease(button)
       }
+      if (typeof mappedInput[button].button !== 'undefined' && buttonOnce[mappedInput[button].button] && r.IsGamepadButtonUp(0, mappedInput[button].button)) {
+        buttonOnce[mappedInput[button].button] = false
+        currentScene.buttonRelease(button)
+      }
       if (typeof mappedInput[button].axis !== 'undefined') {
-        if (mappedInput[button].direction === -1 && r.GetGamepadAxisMovement(0, mappedInput[button].axis) === 0 && pushOnce[mappedInput[button].axis]) {
-          pushOnce[mappedInput[button].axis] = false
+        if (mappedInput[button].direction === -1 && axisOnce[mappedInput[button].axis] && r.GetGamepadAxisMovement(0, mappedInput[button].axis) === 0) {
+          axisOnce[mappedInput[button].axis] = false
           currentScene.buttonRelease(button)
         }
-        if (mappedInput[button].direction === 1 && r.GetGamepadAxisMovement(0, mappedInput[button].axis) === 0 && pushOnce[mappedInput[button].axis]) {
-          pushOnce[mappedInput[button].axis] = false
+        if (mappedInput[button].direction === 1 && axisOnce[mappedInput[button].axis] && r.GetGamepadAxisMovement(0, mappedInput[button].axis) === 0) {
+          axisOnce[mappedInput[button].axis] = false
           currentScene.buttonRelease(button)
         }
       }
