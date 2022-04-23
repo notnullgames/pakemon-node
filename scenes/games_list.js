@@ -2,7 +2,7 @@ import r from 'raylib'
 import { basename } from 'path'
 import { readFileSync } from 'fs'
 import { globbySync } from 'globby'
-import { spawn } from 'child_process'
+import { exec } from 'child_process'
 
 import * as SceneGamesTop from '../scenes/games_top.js'
 
@@ -13,6 +13,25 @@ let romNames = []
 let currentItem = 0
 let currentSystem
 
+function runCommand (command) {
+  return new Promise((resolve, reject) => {
+    globalThis.shouldClose = true
+    exec(command, {}, (error, stdout, stderr) => {
+      if (error) {
+        console.error(error)
+        return reject(error)
+      }
+      if (stderr) {
+        console.error(stderr.toString())
+      }
+      if (stdout) {
+        console.log(stdout.toString())
+      }
+      resolve({ stdout, stderr })
+    })
+  })
+}
+
 async function run () {
   const ext = romFiles[currentItem].split('.').pop()
   const c = Object.values(systems).findIndex(exts => exts.includes(ext))
@@ -21,19 +40,15 @@ async function run () {
     console.log(`Running ${romFiles[currentItem]} with core ${core}`)
     if (core === 'node-raylib') {
       global.switchScene(await import(`../${romFiles[currentItem]}`))
-    }
-    if (core === 'shell') {
-      const ps = spawn(`./${romFiles[currentItem]}`, [])
-      globalThis.shouldClose = true
-      ps.stdout.on('data', (data) => {
-        console.log(data.toString())
-      })
-      ps.stderr.on('data', (data) => {
-        console.error(data.toString())
-      })
-      ps.on('close', (data) => {
-        init({ system: currentSystem })
-      })
+    } else if (core === 'shell') {
+      runCommand(`./${romFiles[currentItem]}`)
+    } else {
+      runCommand([
+        '/Applications/RetroArch.app/Contents/MacOS/RetroArch',
+        '--fullscreen',
+        '-L', `"${process.env.HOME}/Library/Application Support/RetroArch/cores/${core}_libretro.dylib"`,
+        `"${romFiles[currentItem]}"`
+      ].join(' '))
     }
   } else {
     console.log(`Core not found for ${romFiles[currentItem]}`)

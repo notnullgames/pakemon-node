@@ -59,6 +59,7 @@ const buttonOnce = {}
 while(await MaintainFPS(30)) {
   // allow global exit with START + SELECT
   if (
+    globalThis.shouldClose ||
     (r.IsKeyDown(mappedInput.START.key) && r.IsKeyDown(mappedInput.SELECT.key)) ||
     (r.IsGamepadButtonDown(0, mappedInput.START.button) && r.IsGamepadButtonDown(0, mappedInput.SELECT.button))
   ) {
