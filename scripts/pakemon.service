@@ -6,6 +6,7 @@ WorkingDirectory=/opt/pakemon
 ExecStart=node index.js
 Restart=always
 RestartSec=5s
+User=root
 
 [Install]
 WantedBy=basic.target

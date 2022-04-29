@@ -43,10 +43,18 @@ async function run () {
     } else if (core === 'shell') {
       runCommand(`./${romFiles[currentItem]}`)
     } else {
+      let command = 'retroarch'
+      let coreName = ''
+
+      if (process.platform === 'darwin') {
+        command = '/Applications/RetroArch.app/Contents/MacOS/RetroArch'
+        coreName = `"${process.env.HOME}/Library/Application Support/RetroArch/cores/${core}_libretro.dylib"`
+      }
+
       runCommand([
-        '/Applications/RetroArch.app/Contents/MacOS/RetroArch',
+        command,
         '--fullscreen',
-        '-L', `"${process.env.HOME}/Library/Application Support/RetroArch/cores/${core}_libretro.dylib"`,
+        '-L', coreName,
         `"${romFiles[currentItem]}"`
       ].join(' '))
     }
